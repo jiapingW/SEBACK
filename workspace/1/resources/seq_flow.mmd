@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant M as main
+    participant G as Game
+    participant S as Snake
+    participant F as Food
+
+    M->>G: start()
+    G->>S: move()
+    G->>S: collides_with_self()
+    G->>S: collides_with_wall(width, height)
+    G->>F: generate(width, height, snake.body)
+    G->>M: update()
+    M->>G: end()
+    M->>G: restart()

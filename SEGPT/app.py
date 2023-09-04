@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, redirect
+from flask import Flask, render_template, jsonify, request, send_file
 import zipfile
 import json
 import os
@@ -171,7 +171,7 @@ def download_files():
         for filename in filenames:
             zip.write(os.path.join(path, filename), os.path.join(fpath, filename))
     zip.close()    
-    return redirect('/files.zip'), 200
+    return send_file('files.zip', as_attachment=True, download_name="files.zip"), 200
 
 
 @app.route('/api/update_project_name', methods=['POST'])

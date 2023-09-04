@@ -1,0 +1,29 @@
+classDiagram
+    class Game{
+        +int score
+        +int width
+        +int height
+        +Snake snake
+        +Food food
+        +start()
+        +end()
+        +restart()
+        +update()
+    }
+    
+    class Snake{
+        +list body
+        +str direction
+        +move()
+        +grow()
+        +collides_with_self()
+        +collides_with_wall(int, int)
+    }
+    
+    class Food{
+        +tuple position
+        +generate(int, int, list)
+    }
+
+    Game "1" -- "1" Snake: controls
+    Game "1" -- "1" Food: generates
