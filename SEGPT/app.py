@@ -117,7 +117,7 @@ def get_file_content():
     data = request.get_json()
     tid = int(data.get('id'))
     filename = data.get('filename')
-    if filename in ['prd', 'requirement', 'system_design', 'task', 'detail']:
+    if filename in ['prd', 'requirement', 'system_design', 'task', 'detail', 'data_api_design', 'seq_flow']:
         content = handle_file.get_docs_by_classification(filename, tid)
     else:
         content = handle_file.get_code_by_filename(filename, tid)

@@ -31,11 +31,15 @@ class HandleFile:
         file_content = self.get_file_content(filepath+"/code/"+filename+".py")
         return file_content
     
-    # classification只能为detail、prd、requirement、system_design、task
+    # classification只能为detail、prd、requirement、system_design、task、data_api_design、seq_flow
     def get_docs_by_classification(self, classification: str, tid: int):
         filepath = HandleFile.project_id_path[tid]
-        file_content = self.get_file_content(filepath+"/docs/"+classification+".md")
-        return file_content
+        if classification in ['detail', 'prd', 'requirement', 'system_design', 'task']:    
+            file_content = self.get_file_content(filepath+"/docs/"+classification+".mmd")
+            return file_content
+        elif classification in ['data_api_design', 'seq_flow']:
+            file_content = self.get_file_content(filepath+"/resources/"+classification+".mmd")
+            return file_content
     
     def write_docs_file(self, content: str, classification: str, tid: int):
         filepath = HandleFile.project_id_path[tid]
