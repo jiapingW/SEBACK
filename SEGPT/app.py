@@ -5,6 +5,12 @@ import os
 from handle_file import HandleFile, create_projectMap, update_name, load_parameter, delete_project, recover_project
 app = Flask(__name__)
 
+#解决跨域问题
+from flask import Flask
+from flask_cors import CORS
+CORS(app)
+
+# 其他的路由和方法
 
 # @app.route('/')
 # def index():
@@ -97,7 +103,12 @@ def generate_docs():
 def generate_code():
     data = request.get_json()
     tid = int(data.get('id'))
+    print(HandleFile.project_id_to_name)
     handle_file.generate_code(tid)
+    
+ 
+    # print(HandleFile.project_id_path)
+    # print(HandleFile.trash)
     return jsonify({"generated": True, "id": tid, "name": HandleFile.project_id_to_name[tid]}), 200
 
 
@@ -210,4 +221,5 @@ def show_trash():
 
 if __name__ == '__main__':
     handle_file = HandleFile()
+    load_parameter()
     app.run(debug=True)

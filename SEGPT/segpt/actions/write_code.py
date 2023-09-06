@@ -4,7 +4,7 @@ from langchain.prompts.chat import (
 )
 from segpt.actions.get_folder_name import GETProductName
 from segpt.utils.common import CodeParser
-
+import os
 
 # 从包含code的txt中提取符合要求的code
 def parse_code(code_txt: str) -> str:
@@ -14,8 +14,26 @@ def parse_code(code_txt: str) -> str:
 # filename中包含文件后缀名.py
 def save_code(filename: str, code: str):
     print(filename)
-    with open(str(GETProductName.code_path)+"/"+filename, "w") as f:
+    # with open(str(GETProductName.code_path)+"/"+filename, "w") as f:
+    #     f.write(code)
+    
+    full_path = os.path.join(GETProductName.code_path, filename)
+    
+    # 获取该文件的目录路径，并确保它存在
+    directory = os.path.dirname(full_path)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    
+    print(full_path)
+    
+    # 保存代码
+    with open(full_path, "w") as f:
         f.write(code)
+
+
+
+
+
 
 
 # 返回的是一个完整的prompt dict，因为存在多个python 的code文件需要写入,结构是{filename:prompt}

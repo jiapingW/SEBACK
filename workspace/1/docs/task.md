@@ -1,54 +1,91 @@
 ## Required Python third-party packages
 ```python
 """
-curses==2.2
+pygame==2.0.1
 """
 ```
 
 ## Required Other language third-party packages
 ```python
 """
-No third-party packages required in other languages.
+No third-party ...
 """
 ```
 
 ## Full API spec
 ```python
 """
-No APIs are required for this project as it is a command-line game.
+openapi: 3.0.0
+info:
+  title: Snake Game API
+  description: API for controlling the snake game
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+paths:
+  /start:
+    post:
+      summary: Start the game
+      responses:
+        '200':
+          description: Game started successfully
+  /end:
+    post:
+      summary: End the game
+      responses:
+        '200':
+          description: Game ended successfully
+  /pause:
+    post:
+      summary: Pause the game
+      responses:
+        '200':
+          description: Game paused successfully
+  /resume:
+    post:
+      summary: Resume the game
+      responses:
+        '200':
+          description: Game resumed successfully
 """
 ```
 
 ## Logic Analysis
 ```python
 [
-    ("snake.py", "Contains the Snake class which represents the snake in the game. It should have methods for moving the snake, growing the snake, and checking for collisions with itself or the wall."),
-    ("food.py", "Contains the Food class which represents the food in the game. It should have a method for generating food in a random position within the grid, excluding the cells occupied by the snake."),
-    ("game.py", "Contains the Game class which controls the game logic. It should have methods for starting, ending, and restarting the game, updating the game state, and displaying the game state on the screen."),
-    ("main.py", "This is the main entry point of the application. It should create an instance of the Game class and call its methods to run the game.")
+    ("main.py", "Contains the main entry point for the game"),
+    ("game.py", "Contains the Game class which controls the game logic"),
+    ("snake.py", "Contains the Snake class which represents the snake in the game"),
+    ("food.py", "Contains the Food class which represents the food in the game"),
+    ("game_screen.py", "Contains the GameScreen class which handles drawing the game screen"),
 ]
 ```
 
 ## Task list
 ```python
 [
+    "main.py",
+    "game.py",
     "snake.py",
     "food.py",
-    "game.py",
-    "main.py"
+    "game_screen.py",
 ]
 ```
 
 ## Shared Knowledge
 ```python
 """
-The 'curses' library in Python is used for creating text-based user interfaces. It provides methods for moving the cursor, creating windows, producing colors and special characters, and handling keyboard input.
+The main entry point for the game is in 'main.py'.
 
-The game grid is represented as a 2D array of characters, with different characters representing the snake, the food, and empty space. The snake's movement is handled by adding a new head to the snake's body in the direction of movement and removing the last element of the body. The snake grows by simply not removing the last element when it eats food.
+The 'game.py' file contains the Game class which controls the game logic.
 
-The score is incremented each time the snake eats food and is displayed on the screen. The game ends when the snake collides with the wall or itself, and a game over message is displayed. The player can then choose to restart the game.
+The 'snake.py' file contains the Snake class which represents the snake in the game.
+
+The 'food.py' file contains the Food class which represents the food in the game.
+
+The 'game_screen.py' file contains the GameScreen class which handles drawing the game screen.
 """
 ```
 
 ## Anything UNCLEAR
-There is no unclear part in the requirement. The main entry point of the application will be 'main.py', and the 'curses' library will be initialized in the 'main.py' file before starting the game.
+We need to clarify how the game is started.

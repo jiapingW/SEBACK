@@ -35,7 +35,7 @@ class HandleFile:
     def get_docs_by_classification(self, classification: str, tid: int):
         filepath = HandleFile.project_id_path[tid]
         if classification in ['detail', 'prd', 'requirement', 'system_design', 'task']:    
-            file_content = self.get_file_content(filepath+"/docs/"+classification+".mmd")
+            file_content = self.get_file_content(filepath+"/docs/"+classification+".md")
             return file_content
         elif classification in ['data_api_design', 'seq_flow']:
             file_content = self.get_file_content(filepath+"/resources/"+classification+".mmd")

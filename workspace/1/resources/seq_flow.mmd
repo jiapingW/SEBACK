@@ -1,14 +1,23 @@
 sequenceDiagram
-    participant M as main
+    participant M as Main
     participant G as Game
     participant S as Snake
     participant F as Food
+    participant GS as GameScreen
 
-    M->>G: start()
-    G->>S: move()
-    G->>S: collides_with_self()
-    G->>S: collides_with_wall(width, height)
-    G->>F: generate(width, height, snake.body)
-    G->>M: update()
-    M->>G: end()
-    M->>G: restart()
+    M->>G: start game
+    G->>S: move snake
+    G->>F: generate food
+    GS->>GS: draw snake
+    GS->>GS: draw food
+    GS->>GS: draw score
+    S->>S: change direction
+    S->>S: move
+    S->>S: eat food
+    S->>S: collide with wall?
+    S->>S: collide with self?
+    G-->>GS: draw snake
+    G-->>GS: draw food
+    G-->>GS: draw score
+    G-->>GS: draw game over
+    M->>G: end game

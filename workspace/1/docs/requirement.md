@@ -1,65 +1,58 @@
+---
 ## functional requirements
 ```python
 [
-    {
-        "Can control the snake using the arrow keys on my keyboard": [
-            "Implement a grid system for the snake to move around",
-            "The initial length of the snake is 1",
-            "The player controls the moving direction of the snake using the arrow keys",
-            "The snake moves one grid per input",
-            "The snake continues to move in the last input direction if no new input is received"
-        ]
-    },
-    {
-        "The snake grows longer when it eats food": [
-            "Randomly generate food on the grid, excluding the grids occupied by the snake",
-            "When the snake's head reaches the grid with food, the food disappears",
-            "The length of the snake increases by 1 when it eats food",
-            "The new length is added at the end of the snake"
-        ]
-    },
-    {
-        "The player's score increases when the snake eats food": [
-            "Initialize the player's score to 0 at the start of the game",
-            "Increase the player's score by 1 each time the snake eats food",
-            "Display the current score on the game interface"
-        ]
-    },
-    {
-        "The game ends if the snake hits the wall or its own body": [
-            "If the snake's head moves to the grid at the edge of the interface, the game ends",
-            "If the snake's head moves to any grid occupied by its body, the game ends",
-            "Display a game over message when the game ends"
-        ]
-    },
-    {
-        "The player can restart the game after it ends": [
-            "Provide a restart option in the game over message",
-            "Reset the game state including the snake's length and position, score, and food position when the game restarts"
-        ]
-    }
+    "The game should have a timer that counts down from a specified time limit": [
+        "Implement a timer that starts counting down from the specified time limit when the game starts",
+        "Display the remaining time on the game screen",
+        "End the game when the timer reaches zero"
+    ],
+    "The snake's speed should increase as the player's score increases": [
+        "Implement a scoring system that keeps track of the player's score",
+        "Increase the snake's speed as the player's score increases",
+        "Adjust the speed increment based on the desired difficulty level"
+    ],
+    "The game should have power-ups that provide temporary advantages to the player": [
+        "Create power-up objects that randomly appear on the game screen",
+        "Define different types of power-ups with unique effects",
+        "Allow the snake to collect power-ups by moving over them",
+        "Apply the power-up effects to the snake or the game environment"
+    ],
+    "The game should have different themes or skins that the player can choose from": [
+        "Design multiple themes or skins for the game",
+        "Implement a theme/skin selection menu",
+        "Allow the player to choose a theme/skin before starting the game",
+        "Apply the chosen theme/skin to the game environment and snake"
+    ],
+    "The game should have a high score leaderboard to track the top scores": [
+        "Implement a high score tracking system",
+        "Store the top scores in a persistent storage",
+        "Display the top scores on a leaderboard screen",
+        "Update the leaderboard when a new high score is achieved"
+    ]
 ]
 ```
 
 ## non-functional requirements
 ```python
 [
-    {
-        "Provide a user-friendly and intuitive interface for controlling the snake": [
-            "The game interface should clearly display the grid system, the snake, and the food",
-            "The game interface should display the current score and game status",
-            "The control instructions should be clearly displayed on the game interface"
-        ]
-    },
-    {
-        "Ensure the game runs smoothly without lag": [
-            "Optimize the game logic to avoid unnecessary computations",
-            "Ensure the game refresh rate is consistent and suitable for a smooth gaming experience",
-            "Test the game under different system loads to ensure performance stability"
-        ]
-    }
+    "Provide a user-friendly and intuitive interface for controlling the snake": [
+        "Design a responsive and visually appealing game interface",
+        "Implement smooth and precise controls for the snake",
+        "Provide clear instructions or tutorials on how to control the snake"
+    ],
+    "Ensure smooth and seamless gameplay without lag or glitches": [
+        "Optimize the game performance to ensure smooth rendering and movement",
+        "Handle user input and game logic efficiently to prevent lag or delays",
+        "Thoroughly test the game for any bugs or glitches and fix them"
+    ],
+    "Support multiple platforms and devices for wider accessibility": [
+        "Develop the game using cross-platform technologies or frameworks",
+        "Ensure compatibility with popular operating systems (e.g., Windows, macOS, Linux)",
+        "Test the game on different devices and screen resolutions to ensure proper display"
+    ]
 ]
 ```
 
 ## Anything UNCLEAR
-The requirement is clear to me.
+There are no unclear points.

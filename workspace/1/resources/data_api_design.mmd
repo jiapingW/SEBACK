@@ -1,29 +1,36 @@
 classDiagram
     class Game{
-        +int score
-        +int width
-        +int height
-        +Snake snake
-        +Food food
-        +start()
-        +end()
-        +restart()
-        +update()
-    }
-    
-    class Snake{
-        +list body
-        +str direction
-        +move()
-        +grow()
-        +collides_with_self()
-        +collides_with_wall(int, int)
-    }
-    
-    class Food{
-        +tuple position
-        +generate(int, int, list)
+        +score: int
+        +start(): None
+        +end(): None
+        +pause(): None
+        +resume(): None
     }
 
-    Game "1" -- "1" Snake: controls
-    Game "1" -- "1" Food: generates
+    class Snake{
+        +direction: int
+        +body: List[Tuple[int, int]]
+        +move(): None
+        +change_direction(direction: int): None
+        +eat_food(): None
+        +collide_with_wall(): bool
+        +collide_with_self(): bool
+    }
+
+    class Food{
+        +position: Tuple[int, int]
+        +generate(): None
+    }
+
+    class GameScreen{
+        +width: int
+        +height: int
+        +draw_snake(snake: Snake): None
+        +draw_food(food: Food): None
+        +draw_score(score: int): None
+        +draw_game_over(): None
+    }
+
+    Game "1" -- "1" Snake: has
+    Game "1" -- "1" Food: has
+    Game "1" -- "1" GameScreen: has
