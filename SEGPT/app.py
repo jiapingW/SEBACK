@@ -54,6 +54,15 @@ def get_project_name():
     return jsonify({"prd": prd, "id": tid, "name": project_name}), 200
 
 
+@app.route('/api/retry_prd', methods=['POST'])
+def retry_prd():
+    data = request.get_json()
+    tid = int(data.get('id'))
+    handle_file.retry_prd(tid)
+    prd = handle_file.get_docs_by_classification("prd", tid)
+    return jsonify({"prd": prd, "id": tid, "name": HandleFile.project_id_to_name[tid]}), 200
+
+
 @app.route('/api/update_prd', methods=['POST'])
 def create_project():
     # requirment.md确认完成

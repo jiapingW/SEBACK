@@ -70,6 +70,11 @@ class HandleFile:
         get_product_name(tid)
         self.manager.product_manager.write_prd(idea)
         
+    def retry_prd(self, tid: int):
+        idea = self.project_id_to_name[tid]
+        get_product_name(tid)
+        self.manager.product_manager.write_prd(idea)
+        
     def generate_docx(self, filename: str, tid: int):
         set_product_name(tid)
         if filename == 'requirement':

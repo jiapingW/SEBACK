@@ -1,14 +1,14 @@
-## food.py
+from random import randint
+from typing import Tuple
 
-import random
 
 class Food:
     def __init__(self):
         self.position = (0, 0)
 
-    def generate(self) -> None:
-        max_x = GameScreen.width - 1
-        max_y = GameScreen.height - 1
-        x = random.randint(0, max_x)
-        y = random.randint(0, max_y)
+    def generate_position(self, grid_size: Tuple[int, int]) -> Tuple[int, int]:
+        max_x, max_y = grid_size
+        x = randint(0, max_x - 1)
+        y = randint(0, max_y - 1)
         self.position = (x, y)
+        return self.position

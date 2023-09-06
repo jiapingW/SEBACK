@@ -1,23 +1,14 @@
 sequenceDiagram
     participant M as Main
+    participant C as CLI
     participant G as Game
-    participant S as Snake
-    participant F as Food
-    participant GS as GameScreen
 
-    M->>G: start game
-    G->>S: move snake
-    G->>F: generate food
-    GS->>GS: draw snake
-    GS->>GS: draw food
-    GS->>GS: draw score
-    S->>S: change direction
-    S->>S: move
-    S->>S: eat food
-    S->>S: collide with wall?
-    S->>S: collide with self?
-    G-->>GS: draw snake
-    G-->>GS: draw food
-    G-->>GS: draw score
-    G-->>GS: draw game over
-    M->>G: end game
+    M->>C: Create CLI object
+    C->>G: Create Game object
+    G->>C: Set Game object in CLI
+    C->>C: Run CLI
+    C->>G: Handle user input
+    G->>G: Update game state
+    G->>C: Display game state
+    G->>G: Check for game over
+    G->>C: Display game over message

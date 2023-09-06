@@ -2,33 +2,27 @@
 ## functional requirements
 ```python
 [
-    "The game should have a timer that counts down from a specified time limit": [
-        "Implement a timer that starts counting down from the specified time limit when the game starts",
-        "Display the remaining time on the game screen",
-        "End the game when the timer reaches zero"
+    "The game should have a grid-based layout":[
+        "Create a grid with a specified number of rows and columns",
+        "Display the grid on the command line interface"
     ],
-    "The snake's speed should increase as the player's score increases": [
-        "Implement a scoring system that keeps track of the player's score",
-        "Increase the snake's speed as the player's score increases",
-        "Adjust the speed increment based on the desired difficulty level"
+    "The snake should be represented by a specific character on the grid":[
+        "Create a snake object with an initial position on the grid",
+        "Update the snake's position based on user input",
+        "Display the snake on the grid using a specific character"
     ],
-    "The game should have power-ups that provide temporary advantages to the player": [
-        "Create power-up objects that randomly appear on the game screen",
-        "Define different types of power-ups with unique effects",
-        "Allow the snake to collect power-ups by moving over them",
-        "Apply the power-up effects to the snake or the game environment"
+    "Food should be randomly placed on the grid for the snake to eat":[
+        "Generate random coordinates for the food on the grid",
+        "Display the food on the grid using a specific character",
+        "Check if the snake's position overlaps with the food's position"
     ],
-    "The game should have different themes or skins that the player can choose from": [
-        "Design multiple themes or skins for the game",
-        "Implement a theme/skin selection menu",
-        "Allow the player to choose a theme/skin before starting the game",
-        "Apply the chosen theme/skin to the game environment and snake"
+    "The game should end if the snake collides with itself or the boundaries of the grid":[
+        "Check if the snake's position overlaps with any part of its body",
+        "Check if the snake's position is outside the boundaries of the grid"
     ],
-    "The game should have a high score leaderboard to track the top scores": [
-        "Implement a high score tracking system",
-        "Store the top scores in a persistent storage",
-        "Display the top scores on a leaderboard screen",
-        "Update the leaderboard when a new high score is achieved"
+    "The score should be displayed on the screen":[
+        "Keep track of the number of food items eaten by the snake",
+        "Display the score on the screen"
     ]
 ]
 ```
@@ -36,20 +30,20 @@
 ## non-functional requirements
 ```python
 [
-    "Provide a user-friendly and intuitive interface for controlling the snake": [
-        "Design a responsive and visually appealing game interface",
-        "Implement smooth and precise controls for the snake",
-        "Provide clear instructions or tutorials on how to control the snake"
+    "Provide a user-friendly and intuitive interface for controlling the snake":[
+        "Listen for arrow key inputs from the user",
+        "Map the arrow key inputs to snake movement directions",
+        "Update the snake's position based on the mapped movement directions"
     ],
-    "Ensure smooth and seamless gameplay without lag or glitches": [
-        "Optimize the game performance to ensure smooth rendering and movement",
-        "Handle user input and game logic efficiently to prevent lag or delays",
-        "Thoroughly test the game for any bugs or glitches and fix them"
+    "Ensure smooth and responsive gameplay":[
+        "Implement a game loop that updates the game state at regular intervals",
+        "Handle user input during the game loop",
+        "Ensure that the game loop runs at a consistent frame rate"
     ],
-    "Support multiple platforms and devices for wider accessibility": [
-        "Develop the game using cross-platform technologies or frameworks",
-        "Ensure compatibility with popular operating systems (e.g., Windows, macOS, Linux)",
-        "Test the game on different devices and screen resolutions to ensure proper display"
+    "Display clear and readable text on the command line interface":[
+        "Choose a font and font size that is easy to read",
+        "Use appropriate colors for text and background",
+        "Ensure that the text is displayed without any visual artifacts"
     ]
 ]
 ```

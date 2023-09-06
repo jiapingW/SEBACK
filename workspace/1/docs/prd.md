@@ -1,37 +1,38 @@
 ## Original Requirements:
-snake game
+
+snake cli game
 
 ## Product Goals:
 ```python
 [
-    "Create a fun and addictive snake game",
-    "Provide a smooth and responsive user experience",
-    "Include various levels of difficulty to cater to different players"
+    "Create a snake game that can be played in the command line interface",
+    "Provide a fun and engaging gaming experience",
+    "Allow users to challenge themselves and improve their skills"
 ]
 ```
 
 ## User Stories:
 ```python
 [
-    "As a player, I want to control a snake and eat food to grow longer",
-    "As a player, I want to avoid colliding with walls or the snake's own body",
-    "As a player, I want to see my score increase as I eat more food",
-    "As a player, I want to be challenged with increasing difficulty as I progress",
-    "As a player, I want to be able to pause and resume the game at any time"
+    "As a user, I want to be able to control the snake's movement using the arrow keys",
+    "As a user, I want the snake to grow longer and increase in speed as it eats food",
+    "As a user, I want to see my score and the length of the snake on the screen",
+    "As a user, I want to be able to restart the game after losing",
+    "As a user, I want to be able to quit the game at any time"
 ]
 ```
 
 ## Requirement Analysis:
-The product should be a snake game that allows players to control a snake and eat food to grow longer. The game should have walls that the snake should avoid colliding with, as well as the snake's own body. The player's score should increase as they eat more food. The game should also have multiple levels of difficulty to cater to different players. Additionally, the game should allow the player to pause and resume the game at any time.
+The product should be a snake game that can be played in the command line interface. The user should be able to control the movement of the snake using the arrow keys. The snake should grow longer and increase in speed as it eats food. The user should be able to see their score and the length of the snake on the screen. The game should provide a way for the user to restart after losing and to quit the game at any time.
 
 ## Requirement Pool:
 ```python
 [
-    ("The game should have a timer that counts down from a specified time limit", "P0"),
-    ("The snake's speed should increase as the player's score increases", "P1"),
-    ("The game should have power-ups that provide temporary advantages to the player", "P1"),
-    ("The game should have different themes or skins that the player can choose from", "P2"),
-    ("The game should have a high score leaderboard to track the top scores", "P2")
+    ("The game should have a grid-based layout", "P0"),
+    ("The snake should be represented by a specific character on the grid", "P1"),
+    ("Food should be randomly placed on the grid for the snake to eat", "P1"),
+    ("The game should end if the snake collides with itself or the boundaries of the grid", "P0"),
+    ("The score should be displayed on the screen", "P2")
 ]
 ```
 

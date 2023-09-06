@@ -1,5 +1,11 @@
 ## Implementation approach
-We will use the Pygame library to develop the snake game. Pygame is a popular open-source library for creating games in Python and provides a range of functionality for handling graphics, input, and sound. It is well-documented and has a large community, making it a suitable choice for this project.
+We will use the following open-source frameworks and libraries to implement the snake game:
+
+1. Pygame: Pygame is a popular library for creating games in Python. It provides functionality for handling graphics, sound, and user input, which are essential for creating an interactive game like snake.
+
+2. curses: The curses library provides a terminal-independent way of creating text-based interfaces in Python. It allows us to control the cursor position, handle keyboard input, and display text in a terminal window. We can use curses to create the command line interface for our snake game.
+
+By combining Pygame for the game logic and graphics and curses for the command line interface, we can create a snake game that can be played in the command line interface with a user-friendly and intuitive interface.
 
 ## Python package name
 ```python
@@ -10,74 +16,66 @@ We will use the Pygame library to develop the snake game. Pygame is a popular op
 ```python
 [
     "main.py",
+    "snake.py",
+    "food.py",
+    "game.py"
 ]
 ```
 
 ## Data structures and interface definitions
 ```mermaid
 classDiagram
-    class Game{
-        +score: int
-        +start(): None
-        +end(): None
-        +pause(): None
-        +resume(): None
-    }
-
     class Snake{
-        +direction: int
+        +position: Tuple[int, int]
+        +direction: Tuple[int, int]
         +body: List[Tuple[int, int]]
-        +move(): None
-        +change_direction(direction: int): None
-        +eat_food(): None
-        +collide_with_wall(): bool
-        +collide_with_self(): bool
+        +move() : None
+        +grow() : None
+        +collides_with(position: Tuple[int, int]) : bool
     }
 
     class Food{
         +position: Tuple[int, int]
-        +generate(): None
+        +generate_position(grid_size: Tuple[int, int]) : Tuple[int, int]
     }
 
-    class GameScreen{
-        +width: int
-        +height: int
-        +draw_snake(snake: Snake): None
-        +draw_food(food: Food): None
-        +draw_score(score: int): None
-        +draw_game_over(): None
+    class Game{
+        +grid_size: Tuple[int, int]
+        +score: int
+        +snake: Snake
+        +food: Food
+        +game_over: bool
+        +update() : None
+        +handle_input(key: int) : None
+        +display() : None
     }
 
-    Game "1" -- "1" Snake: has
-    Game "1" -- "1" Food: has
-    Game "1" -- "1" GameScreen: has
+    class CLI{
+        +game: Game
+        +run() : None
+    }
+
+    Snake "1" -- "1" Game: has
+    Food "1" -- "1" Game: has
+    Game "1" -- "1" CLI: has
 ```
 
 ## Program call flow
 ```mermaid
 sequenceDiagram
     participant M as Main
+    participant C as CLI
     participant G as Game
-    participant S as Snake
-    participant F as Food
-    participant GS as GameScreen
 
-    M->>G: start game
-    G->>S: move snake
-    G->>F: generate food
-    GS->>GS: draw snake
-    GS->>GS: draw food
-    GS->>GS: draw score
-    S->>S: change direction
-    S->>S: move
-    S->>S: eat food
-    S->>S: collide with wall?
-    S->>S: collide with self?
-    G-->>GS: draw snake
-    G-->>GS: draw food
-    G-->>GS: draw score
-    G-->>GS: draw game over
-    M->>G: end game
+    M->>C: Create CLI object
+    C->>G: Create Game object
+    G->>C: Set Game object in CLI
+    C->>C: Run CLI
+    C->>G: Handle user input
+    G->>G: Update game state
+    G->>C: Display game state
+    G->>G: Check for game over
+    G->>C: Display game over message
 ```
 
 ## Anything UNCLEAR

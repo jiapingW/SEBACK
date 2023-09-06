@@ -1,10 +1,8 @@
-## main.py
-
-from game import Game
+from cli import CLI
 
 def main():
-    game = Game()
-    game.start()
+    cli = CLI()
+    cli.run()
 
 if __name__ == "__main__":
     main()
