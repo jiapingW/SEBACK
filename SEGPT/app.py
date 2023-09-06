@@ -181,7 +181,8 @@ def download_files():
         fpath = path.replace(dirpath, '')
         for filename in filenames:
             zip.write(os.path.join(path, filename), os.path.join(fpath, filename))
-    zip.close()    
+    zip.close()   
+    print("haha") 
     return send_file('files.zip', as_attachment=True, download_name="files.zip"), 200
 
 

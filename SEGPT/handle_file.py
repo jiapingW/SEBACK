@@ -102,6 +102,7 @@ class HandleFile:
     def get_filetree_by_id(self, tid: int):
         filepath = HandleFile.project_id_path[tid]
         filetree = self.get_filetree(filepath)
+        filetree["name"] = HandleFile.project_id_to_name[tid]
         return filetree
         
         

@@ -9,7 +9,6 @@ app = Flask(__name__)
 def download_files():
     dirpath = request.form.get('dirpath')
     print(dirpath)
-    print("hahah")
     # 检查dirpath是否存在，以及是否是一个目录
     if dirpath is None or not os.path.exists(dirpath) or not os.path.isdir(dirpath):
         return "Invalid or missing 'dirpath'", 400
