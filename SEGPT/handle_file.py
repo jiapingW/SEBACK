@@ -174,7 +174,10 @@ def delete_project(id: int):
 
 def recover_project(id: int):
     HandleFile.project_id_to_name[id] = HandleFile.trash[id]
+    print(HandleFile.project_id_to_name)
     del HandleFile.trash[id]
     with open('trash.txt', 'wb') as f:
         pickle.dump(HandleFile.trash, f)
+    with open('id_to_name.txt', 'wb') as f:
+        pickle.dump(HandleFile.project_id_to_name, f)
     
