@@ -1,4 +1,5 @@
 from segpt.actions.get_folder_name import get_product_name, GETProductName, set_product_name
+from segpt.actions.write_code import get_file_list
 import os
 from manager import Manager
 import pickle
@@ -31,6 +32,11 @@ class HandleFile:
         file_content = self.get_file_content(filepath+"/code/"+filename+".py")
         return file_content
     
+    def get_unittest_by_filename(self, filename: str, tid: int):
+        filepath = HandleFile.project_id_path[tid]
+        file_content = self.get_file_content(filepath+"/test/"+filename+".py")
+        return file_content
+    
     # classification只能为detail、prd、requirement、system_design、task、data_api_design、seq_flow
     def get_docs_by_classification(self, classification: str, tid: int):
         filepath = HandleFile.project_id_path[tid]
@@ -51,6 +57,11 @@ class HandleFile:
         with open(filepath+"/code/"+filename+".py", 'w') as f:
             f.write(content)
 
+    def write_unittest_file(self, content: str, filename: str, tid: int):
+        filepath = HandleFile.project_id_path[tid]
+        with open(filepath+"/test/"+filename+".py", 'w') as f:
+            f.write(content)
+            
     def rewrite_file(self, advise: str, filename: str, tid: int):
         set_product_name(tid)
         if filename == 'prd':
@@ -63,6 +74,8 @@ class HandleFile:
             self.manager.project_manager.rewrite_task(advise)
         elif filename == 'detail':
             self.manager.architect_engineer.rewrite_detail(advise)
+        elif 'test_' in filename:
+            self.manager.tester.rewrite_test(advise, filename+".py")
         else:
             self.manager.engineer.rewrite_code(advise, filename+".py")
     
@@ -109,6 +122,10 @@ class HandleFile:
         filetree = self.get_filetree(filepath)
         filetree["name"] = HandleFile.project_id_to_name[tid]
         return filetree
+        
+    def generate_unittest(self, tid: int):
+        set_product_name(tid)
+        self.manager.tester.write_test(get_file_list())
         
         
 # 从txt中加载之前的项目信息

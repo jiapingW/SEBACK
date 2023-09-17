@@ -1,5 +1,6 @@
 from segpt.roles.role import SEAgent
 from segpt.actions.write_test import get_write_test, save_test_code
+from segpt.actions.rewrite_test import get_rewrite_test
 
 
 class Tester(SEAgent):
@@ -14,5 +15,10 @@ class Tester(SEAgent):
             codetxt = self.step(task_specifier_msg_dict[test_filename])
             save_test_code(test_filename, codetxt.content)
         self.test_code_list = list(task_specifier_msg_dict.keys())
+        
+    def rewrite_test(self, advice: str, filename: str):
+        engineer_prompt_msg1 = get_rewrite_test(filename, advice)
+        codetxt = self.step(engineer_prompt_msg1)
+        save_test_code(filename, codetxt.content)
         
         

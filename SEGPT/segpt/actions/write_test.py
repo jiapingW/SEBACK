@@ -41,7 +41,7 @@ from segpt.utils.common import CodeParser
 
 def save_test_code(test_file_name: str, codetxt: str):
     code = CodeParser.parse_code(block="", text=codetxt)
-    with open(str(GETProductName.test_case_path)+"/"+test_file_name, 'w') as f:
+    with open(str(GETProductName.test_path)+"/"+test_file_name, 'w') as f:
         f.write(code)
 
 

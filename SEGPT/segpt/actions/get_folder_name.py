@@ -6,6 +6,7 @@ class GETProductName:
     resources_path = ""
     docs_path = ""
     code_path = ""
+    test_path = ""
     
     
 def get_product_name(id: int):
@@ -17,6 +18,8 @@ def get_product_name(id: int):
     GETProductName.resources_path.mkdir(parents=True, exist_ok=True)  # 创建workspace/1/resources文件夹
     GETProductName.code_path = GETProductName.workspace / 'code'
     GETProductName.code_path.mkdir(parents=True, exist_ok=True) # 创建workspace/1/code文件夹，存放生成的源代码
+    GETProductName.test_path = GETProductName.workspace / 'test'
+    GETProductName.test_path.mkdir(parents=True, exist_ok=True)
 
 
 def set_product_name(id: int):
@@ -24,3 +27,4 @@ def set_product_name(id: int):
     GETProductName.docs_path = GETProductName.workspace / 'docs' 
     GETProductName.resources_path = GETProductName.workspace / 'resources'
     GETProductName.code_path = GETProductName.workspace / 'code'
+    GETProductName.test_path = GETProductName.workspace / 'test'

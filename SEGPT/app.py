@@ -121,6 +121,15 @@ def generate_code():
     return jsonify({"generated": True, "id": tid, "name": HandleFile.project_id_to_name[tid]}), 200
 
 
+@app.route('/api/generate_unittest', methods=['POST'])
+def generate_unittest():
+    data = request.get_json()
+    tid = int(data.get('id'))
+    print(HandleFile.project_id_to_name)
+    handle_file.generate_unittest(tid)
+    return jsonify({"generated": True, "id": tid, "name": HandleFile.project_id_to_name[tid]}), 200
+
+
 # 返回文件的文件树
 @app.route('/api/get_file_list', methods=['POST'])
 def get_file_list():
@@ -139,6 +148,8 @@ def get_file_content():
     filename = data.get('filename')
     if filename in ['prd', 'requirement', 'system_design', 'task', 'detail', 'data_api_design', 'seq_flow']:
         content = handle_file.get_docs_by_classification(filename, tid)
+    elif 'test_' in filename:
+        content = handle_file.get_unittest_by_filename(filename, tid)
     else:
         content = handle_file.get_code_by_filename(filename, tid)
     # 返回文件内容
@@ -155,13 +166,14 @@ def save_file():
     # 保存修改后文件
     if filename in ['prd', 'requirement', 'system_design', 'task', 'detail']:
         handle_file.write_docs_file(new_content, filename, tid)
+    elif 'test_' in filename:
+        handle_file.write_unittest_file(new_content, filename, tid)
     else:
         handle_file.write_code_file(new_content, filename, tid)
     return jsonify({"status": "success", "id": tid, "name": HandleFile.project_id_to_name[tid]}), 200
 
 
-# 未测
-# 根据message的建议修改docs类文件的内容，只能为'prd'、'requirement'、'system_design'
+# 根据意见修改文件
 @app.route('/api/send_chat_docs', methods=['POST'])
 def send_chat():
     data = request.get_json()
@@ -173,12 +185,13 @@ def send_chat():
     new_content = ""
     if filename in ['prd', 'requirement', 'system_design', 'task', 'detail']:  
         new_content = handle_file.get_docs_by_classification(filename, tid)
+    elif 'test_' in filename:
+        new_content = handle_file.get_unittest_by_filename(filename, tid)
     else:
         new_content = handle_file.get_code_by_filename(filename, tid)
     return jsonify({"new_content": new_content, "id": tid, "name": HandleFile.project_id_to_name[tid]}), 200
 
 
-# 存在问题，压缩包里内容不对
 @app.route('/api/download_files', methods=['POST'])
 def download_files():
     tid = int(request.get_json().get('id'))
@@ -191,7 +204,6 @@ def download_files():
         for filename in filenames:
             zip.write(os.path.join(path, filename), os.path.join(fpath, filename))
     zip.close()   
-    print("haha") 
     return send_file('files.zip', as_attachment=True, download_name="files.zip"), 200
 
 
